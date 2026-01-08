@@ -296,10 +296,13 @@ const Home = () => {
               data-animation="hero-glow"
             ></div>
             <img
-              src={`https://res.cloudinary.com/daokrum7i/image/upload/v1767814232/hc_landing_page_xrcmny.png`}
+              src="https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_1000/v1767814232/hc_landing_page_xrcmny.png"
               alt={IMAGE_ALTS.hero}
-              className="z-10 w-full object-cover aspect-[4/3.5]"
+              className="z-10 w-full object-cover aspect-[4/3.5] drop-shadow-2xl rounded-2xl"
               data-animation="hero-image"
+              width="1000"
+              height="875"
+              fetchPriority="high"
             />
           </div>
         </div>
@@ -328,9 +331,12 @@ const Home = () => {
             </div>
             <div className="">
               <img
-                src="https://res.cloudinary.com/daokrum7i/image/upload/v1767814232/hc_blood_donation_mfwveo.png"
+                src="https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_800/v1767814232/hc_blood_donation_mfwveo.png"
                 alt={IMAGE_ALTS.bloodDonation}
                 data-animation="blood-image"
+                width="800"
+                height="533"
+                loading="lazy"
               />
             </div>
           </div>
@@ -409,10 +415,13 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <img
-              src="https://res.cloudinary.com/daokrum7i/image/upload/v1767814233/humanity_how_can_i_help_xezom5.avif"
+              src="https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600/v1767814233/humanity_how_can_i_help_xezom5.avif"
               alt={IMAGE_ALTS.howCanIHelp}
-              className="object-fit aspect-[3/3]"
+              className="object-fit aspect-[3/3] rounded-2xl shadow-lg"
               data-animation="help-image"
+              width="600"
+              height="600"
+              loading="lazy"
             />
           </div>
           <div className="space-y-16" data-animation="help-text">

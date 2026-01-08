@@ -12,62 +12,14 @@
       name="keywords"
       content="blood donation camp India, NGO blood donation, hospital blood drive, volunteer blood donation India, emergency blood help, Humanity Calls NGO"
     />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ["Montserrat", "sans-serif"],
-              serif: ["Montserrat", "serif"],
-              mono: ["Montserrat", "monospace"],
-            },
-            colors: {
-              "blood-red": "#B71C1C",
-            },
-          },
-        },
-      };
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://res.cloudinary.com" />
     <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <style>
-      * {
-        font-family: "Montserrat", sans-serif !important;
-      }
-      body {
-        font-family: "Montserrat", sans-serif !important;
-        scroll-behavior: smooth;
-      }
-      .bg-blood-red {
-        background-color: #b71c1c;
-      }
-      .text-blood-red {
-        color: #b71c1c;
-      }
-      .border-blood-red {
-        border-color: #b71c1c;
-      }
-
-      @keyframes fade-in {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      .animate-fade-in {
-        animation: fade-in 0.6s ease-out forwards;
-      }
-    </style>
     <script type="importmap">
       {
         "imports": {
@@ -79,7 +31,7 @@
       }
     </script>
   </head>
-  <body class="bg-[#F5F5F5] text-[#1A1A1A]">
+  <body>
     <div id="root"></div>
     <script type="module" src="/index.jsx"></script>
   </body>
