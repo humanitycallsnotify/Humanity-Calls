@@ -298,7 +298,7 @@ const Home = () => {
             <img
               src="https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_1000/v1767814232/hc_landing_page_xrcmny.png"
               alt={IMAGE_ALTS.hero}
-              className="z-10 w-full object-cover aspect-[4/3.5] drop-shadow-2xl rounded-2xl"
+              className="z-10 w-full object-cover aspect-[4/3.5]"
               data-animation="hero-image"
               width="1000"
               height="875"
@@ -417,7 +417,7 @@ const Home = () => {
             <img
               src="https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600/v1767814233/humanity_how_can_i_help_xezom5.avif"
               alt={IMAGE_ALTS.howCanIHelp}
-              className="object-fit aspect-[3/3] rounded-2xl shadow-lg"
+              className="object-fit aspect-[3/3]"
               data-animation="help-image"
               width="600"
               height="600"
