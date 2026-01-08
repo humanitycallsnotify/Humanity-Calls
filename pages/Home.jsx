@@ -46,77 +46,85 @@ const Home = () => {
         '[data-animation="newsletter-section"]'
       );
 
-      if (heroTitle) {
-        animateTitleIn(heroTitle);
-      }
+      if (!isMobile) {
+        if (heroTitle) {
+          animateTitleIn(heroTitle);
+        }
 
-      if (heroParagraph) {
-        animateParagraphIn(heroParagraph);
-      }
+        if (heroParagraph) {
+          animateParagraphIn(heroParagraph);
+        }
 
-      if (heroButtons.length > 0) {
-        gsap.fromTo(
-          heroButtons,
-          { opacity: 0, y: yOffset, scale: 0.9 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.7,
-            stagger: 0.15,
-            delay: 0.6,
-            ease: "back.out(1.7)",
-            scrollTrigger: {
-              trigger: heroButtons[0],
-              start: "top 95%",
-              once: true,
-            },
-          }
-        );
-      }
+        if (heroButtons.length > 0) {
+          gsap.fromTo(
+            heroButtons,
+            { opacity: 0, y: yOffset, scale: 0.9 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.7,
+              stagger: 0.15,
+              delay: 0.6,
+              ease: "back.out(1.7)",
+              scrollTrigger: {
+                trigger: heroButtons[0],
+                start: "top 95%",
+                once: true,
+              },
+            }
+          );
+        }
 
-      if (heroGlow) {
-        gsap.fromTo(
-          heroGlow,
-          { opacity: 0, scale: 0.5 },
-          {
-            opacity: 1,
-            scale: 1.2,
-            duration: 2,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-          }
-        );
-      }
+        if (heroGlow) {
+          gsap.fromTo(
+            heroGlow,
+            { opacity: 0, scale: 0.5 },
+            {
+              opacity: 1,
+              scale: 1.2,
+              duration: 2,
+              repeat: -1,
+              yoyo: true,
+              ease: "sine.inOut",
+            }
+          );
+        }
 
-      if (heroImage) {
-        gsap.fromTo(
-          heroImage,
-          { opacity: 0, scale: 0.8, x: isMobile ? 30 : 100, rotate: 5 },
-          {
-            opacity: 1,
-            scale: 1,
-            x: 0,
-            rotate: 0,
-            duration: 1.2,
-            ease: "elastic.out(1, 0.75)",
-            scrollTrigger: {
-              trigger: heroImage,
-              start: "top 80%",
-              once: true,
-            },
-            onComplete: () => {
-              gsap.to(heroImage, {
-                y: 15,
-                duration: 2,
-                repeat: -1,
-                yoyo: true,
-                ease: "power1.inOut",
-              });
-            },
-          }
-        );
+        if (heroImage) {
+          gsap.set(heroImage, { willChange: "transform, opacity" });
+          gsap.fromTo(
+            heroImage,
+            { opacity: 0, scale: 0.8, x: 100, rotate: 5 },
+            {
+              opacity: 1,
+              scale: 1,
+              x: 0,
+              rotate: 0,
+              duration: 1.2,
+              ease: "elastic.out(1, 0.75)",
+              scrollTrigger: {
+                trigger: heroImage,
+                start: "top 80%",
+                once: true,
+              },
+              onComplete: () => {
+                gsap.set(heroImage, { willChange: "auto" });
+                gsap.to(heroImage, {
+                  y: 15,
+                  duration: 2,
+                  repeat: -1,
+                  yoyo: true,
+                  ease: "power1.inOut",
+                });
+              },
+            }
+          );
+        }
+      } else {
+        if (heroImage) {
+          gsap.set(heroImage, { opacity: 1, scale: 1, x: 0, rotate: 0 });
+        }
       }
 
       if (bloodDonationSection) {
@@ -139,6 +147,7 @@ const Home = () => {
       }
 
       if (bloodSectionImage) {
+        gsap.set(bloodSectionImage, { willChange: "transform, opacity" });
         gsap.fromTo(
           bloodSectionImage,
           { opacity: 0, scale: 0.9, x: isMobile ? -20 : -40 },
@@ -154,6 +163,7 @@ const Home = () => {
               end: "bottom 60%",
               once: true,
             },
+            onComplete: () => gsap.set(bloodSectionImage, { willChange: "auto" }),
           }
         );
       }
@@ -182,6 +192,7 @@ const Home = () => {
       }
 
       if (helpImage) {
+        gsap.set(helpImage, { willChange: "transform, opacity" });
         gsap.fromTo(
           helpImage,
           { opacity: 0, scale: 0.9, x: isMobile ? -20 : -40 },
@@ -197,6 +208,7 @@ const Home = () => {
               end: "bottom 60%",
               once: true,
             },
+            onComplete: () => gsap.set(helpImage, { willChange: "auto" }),
           }
         );
       }
@@ -307,6 +319,12 @@ const Home = () => {
             ></div>
             <img
               src="https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_900/v1767814232/hc_landing_page_xrcmny.png"
+              srcSet="
+                https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_400/v1767814232/hc_landing_page_xrcmny.png 400w,
+                https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600/v1767814232/hc_landing_page_xrcmny.png 600w,
+                https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_900/v1767814232/hc_landing_page_xrcmny.png 900w
+              "
+              sizes="(max-width: 640px) 90vw, 900px"
               alt={IMAGE_ALTS.hero}
               className="z-10 w-full object-cover aspect-[4/3.5]"
               data-animation="hero-image"

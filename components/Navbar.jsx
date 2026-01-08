@@ -29,7 +29,15 @@ const Navbar = () => {
           animateMobileMenuOpen(mobileMenu);
         }
       }, navRef);
-      return () => ctx.revert();
+      
+      document.body.style.overflow = "hidden";
+      
+      return () => {
+        ctx.revert();
+        document.body.style.overflow = "";
+      };
+    } else {
+      document.body.style.overflow = "";
     }
   }, [isOpen]);
 
@@ -86,7 +94,7 @@ const Navbar = () => {
                 key={link.label}
                 to={link.href}
                 data-animation="nav-link"
-                className={`font-medium transition-colors text-sm ${
+                className={`font-medium transition-colors text-sm rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#B71C1C] ${
                   isActive(link.href)
                     ? "text-[#B71C1C]"
                     : "text-[#4A4A4A] hover:text-[#B71C1C]"
@@ -118,7 +126,7 @@ const Navbar = () => {
                       <button
                         key={link.label}
                         onClick={link.onClick}
-                        className="w-full text-left block px-4 py-3 text-sm text-[#4A4A4A] hover:bg-gray-50 hover:text-[#B71C1C] transition-colors"
+                        className="w-full text-left block px-4 py-3 text-sm text-[#4A4A4A] hover:bg-gray-50 hover:text-[#B71C1C] transition-colors focus:outline-none focus:ring-inset focus:ring-2 focus:ring-[#B71C1C]"
                       >
                         {link.label}
                       </button>
@@ -126,7 +134,7 @@ const Navbar = () => {
                       <Link
                         key={link.label}
                         to={link.href}
-                        className="block px-4 py-3 text-sm text-[#4A4A4A] hover:bg-gray-50 hover:text-[#B71C1C] transition-colors"
+                        className="block px-4 py-3 text-sm text-[#4A4A4A] hover:bg-gray-50 hover:text-[#B71C1C] transition-colors focus:outline-none focus:ring-inset focus:ring-2 focus:ring-[#B71C1C]"
                       >
                         {link.label}
                       </Link>
@@ -164,7 +172,8 @@ const Navbar = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-[#1A1A1A] p-2"
-              aria-label="Toggle navigation"
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isOpen}
             >
               <svg
                 className="w-8 h-8"
@@ -204,7 +213,7 @@ const Navbar = () => {
               <Link
                 key={link.label}
                 to={link.href}
-                className="block px-4 py-4 text-lg font-medium text-[#4A4A4A] hover:bg-gray-50 border-b border-gray-100"
+                className="block px-4 py-4 text-lg font-medium text-[#4A4A4A] hover:bg-gray-50 border-b border-gray-100 focus:outline-none focus:ring-inset focus:ring-2 focus:ring-[#B71C1C]"
                 onClick={() => setIsOpen(false)}
                 data-animation="mobile-link"
               >
@@ -224,7 +233,7 @@ const Navbar = () => {
                         link.onClick(e);
                         setIsOpen(false);
                       }}
-                      className="block py-2 text-base font-medium text-[#4A4A4A] text-left"
+                      className="block py-2 text-base font-medium text-[#4A4A4A] text-left focus:outline-none focus:ring-inset focus:ring-2 focus:ring-[#B71C1C] rounded px-1"
                     >
                       {link.label}
                     </button>
@@ -232,7 +241,7 @@ const Navbar = () => {
                     <Link
                       key={link.label}
                       to={link.href}
-                      className="block py-2 text-base font-medium text-[#4A4A4A]"
+                      className="block py-2 text-base font-medium text-[#4A4A4A] focus:outline-none focus:ring-inset focus:ring-2 focus:ring-[#B71C1C] rounded px-1"
                       onClick={() => setIsOpen(false)}
                     >
                       {link.label}
@@ -243,12 +252,12 @@ const Navbar = () => {
             </div>
             <div className="flex flex-col space-y-3 pt-8 px-4">
               <Link to="/request-donors" onClick={() => setIsOpen(false)}>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full min-h-[48px] md:min-h-[44px]">
                   Request For Donors
                 </Button>
               </Link>
-              <Link to="#" onClick={() => setIsOpen(false)}>
-                <Button className="w-full">Donate Now</Button>
+              <Link to="/donate" onClick={() => setIsOpen(false)}>
+                <Button className="w-full min-h-[48px] md:min-h-[44px]">Donate Now</Button>
               </Link>
             </div>
 

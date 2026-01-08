@@ -139,6 +139,8 @@ export const animateFooterElements = () => {
 export const animateCards = (cards) => {
   if (!cards || cards.length === 0) return;
   
+  gsap.set(cards, { willChange: "transform, opacity" });
+  
   cards.forEach((card, idx) => {
     gsap.fromTo(
       card,
@@ -156,6 +158,7 @@ export const animateCards = (cards) => {
           end: 'bottom 60%',
           once: true,
         },
+        onComplete: () => gsap.set(card, { willChange: "auto" }),
       }
     );
   });
@@ -164,18 +167,13 @@ export const animateCards = (cards) => {
 export const animateTitleIn = (element) => {
   if (!element) return;
   
-  // Use a cleaner way to animate text that doesn't mess with React's DOM as much
-  // if possible, but for now we keep the word splitting if it's already there
-  // and just make sure it's GSAP safe
-  
   const wordSpans = element.querySelectorAll('[data-word="true"]');
   if (wordSpans.length === 0) {
-    // If words are not yet split, we can do it once
     const childNodes = Array.from(element.childNodes);
     element.innerHTML = '';
 
     childNodes.forEach((node) => {
-      if (node.nodeType === 3) { // Text node
+      if (node.nodeType === 3) {
         const words = node.textContent.split(/(\s+)/);
         words.forEach((word) => {
           if (word.trim() === '') {
@@ -188,7 +186,7 @@ export const animateTitleIn = (element) => {
             element.appendChild(span);
           }
         });
-      } else if (node.nodeType === 1) { // Element node
+      } else if (node.nodeType === 1) {
         const el = node;
         el.setAttribute('data-word', 'true');
         if (!el.style.display) {
@@ -200,6 +198,7 @@ export const animateTitleIn = (element) => {
   }
 
   const targets = element.querySelectorAll('[data-word="true"]');
+  gsap.set(targets, { willChange: "transform, opacity" });
   gsap.fromTo(
     targets,
     { opacity: 0, y: 30, scale: 0.8, rotate: -2 },
@@ -216,6 +215,7 @@ export const animateTitleIn = (element) => {
         start: 'top 90%',
         once: true,
       },
+      onComplete: () => gsap.set(targets, { willChange: "auto" }),
     }
   );
 };

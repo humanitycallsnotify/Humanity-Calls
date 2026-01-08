@@ -8,7 +8,7 @@ const Button = ({
   className = '',
   type = 'button'
 }) => {
-  const baseStyles = "px-6 py-3 rounded-md font-medium transition-all duration-300 transform hover:scale-105 active:scale-95";
+  const baseStyles = "px-8 py-4 rounded-md font-medium transition-all duration-300 transform hover:scale-105 active:scale-95 min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#B71C1C]";
   
   const variants = {
     primary: "bg-[#B71C1C] text-white hover:bg-[#8E1616]",

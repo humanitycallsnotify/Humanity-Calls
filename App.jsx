@@ -6,11 +6,11 @@ import {
   useLocation,
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 import Home from "./pages/Home";
 
-// Lazy load other pages
+// Lazy load Footer and other pages
+const Footer = lazy(() => import("./components/Footer"));
 const About = lazy(() => import("./pages/About"));
 const RequestDonors = lazy(() => import("./pages/RequestDonors"));
 const PoorNeedy = lazy(() => import("./pages/PoorNeedy"));
@@ -67,7 +67,9 @@ const App = () => {
             </Routes>
           </Suspense>
         </main>
-        <Footer />
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
         <WhatsAppButton />
       </div>
     </Router>

@@ -53,6 +53,7 @@ const Footer = () => {
                 onChange={handleChange}
                 type="text"
                 placeholder="Name"
+                aria-label="Your name"
                 className="w-full px-4 py-4 bg-[#2A2A2A] border border-transparent rounded-md focus:border-[#B71C1C] focus:bg-[#333333] outline-none transition-all"
               />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -62,6 +63,7 @@ const Footer = () => {
                   onChange={handleChange}
                   type="email"
                   placeholder="Email"
+                  aria-label="Your email"
                   className="w-full px-4 py-4 bg-[#2A2A2A] border border-transparent rounded-md focus:border-[#B71C1C] focus:bg-[#333333] outline-none transition-all"
                 />
                 <input
@@ -70,6 +72,7 @@ const Footer = () => {
                   onChange={handleChange}
                   type="tel"
                   placeholder="Phone"
+                  aria-label="Your phone number"
                   className="w-full px-4 py-4 bg-[#2A2A2A] border border-transparent rounded-md focus:border-[#B71C1C] focus:bg-[#333333] outline-none transition-all"
                 />
               </div>
@@ -78,10 +81,11 @@ const Footer = () => {
                 name="message"
                 onChange={handleChange}
                 placeholder="Message"
+                aria-label="Your message"
                 rows={4}
                 className="w-full px-4 py-4 bg-[#2A2A2A] border border-transparent rounded-md focus:border-[#B71C1C] focus:bg-[#333333] outline-none transition-all resize-none"
               ></textarea>
-              <Button type="submit" className="w-full py-4 text-lg">
+              <Button type="submit" className="w-full py-4 text-lg" aria-label="Send your message">
                 Send Message
               </Button>
             </form>
@@ -90,14 +94,14 @@ const Footer = () => {
           {/* Quick Links & Info */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-xl font-bold mb-8 text-[#B71C1C] tracking-wide uppercase">
+              <h3 className="text-xl font-bold mb-8 text-white tracking-wide uppercase">
                 Quick Links
               </h3>
-              <ul className="space-y-4 text-gray-400">
+              <ul className="space-y-4">
                 <li data-animation="footer-link">
                   <Link
                     to="/about"
-                    className="hover:text-white hover:pl-2 transition-all duration-300 flex items-center"
+                    className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-300 flex items-center focus:outline-none focus:ring-1 focus:ring-[#B71C1C] rounded px-1"
                   >
                     About Us
                   </Link>
@@ -105,7 +109,7 @@ const Footer = () => {
                 <li data-animation="footer-link">
                   <Link
                     to="/request-donors"
-                    className="hover:text-white hover:pl-2 transition-all duration-300 flex items-center"
+                    className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-300 flex items-center focus:outline-none focus:ring-1 focus:ring-[#B71C1C] rounded px-1"
                   >
                     Request For Donors
                   </Link>
@@ -113,7 +117,7 @@ const Footer = () => {
                 <li data-animation="footer-link">
                   <Link
                     to="/poor-needy"
-                    className="hover:text-white hover:pl-2 transition-all duration-300 flex items-center"
+                    className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-300 flex items-center focus:outline-none focus:ring-1 focus:ring-[#B71C1C] rounded px-1"
                   >
                     Poor/Needy
                   </Link>
@@ -121,7 +125,7 @@ const Footer = () => {
                 <li data-animation="footer-link">
                   <Link
                     to="/animal-rescue"
-                    className="hover:text-white hover:pl-2 transition-all duration-300 flex items-center"
+                    className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-300 flex items-center focus:outline-none focus:ring-1 focus:ring-[#B71C1C] rounded px-1"
                   >
                     Animal Rescue
                   </Link>
@@ -129,7 +133,7 @@ const Footer = () => {
                 <li data-animation="footer-link">
                   <Link
                     to="/volunteer"
-                    className="hover:text-white hover:pl-2 transition-all duration-300 flex items-center"
+                    className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-300 flex items-center focus:outline-none focus:ring-1 focus:ring-[#B71C1C] rounded px-1"
                   >
                     Volunteer
                   </Link>
@@ -137,7 +141,7 @@ const Footer = () => {
                 <li data-animation="footer-link">
                   <Link
                     to="/collaborate"
-                    className="hover:text-white hover:pl-2 transition-all duration-300 flex items-center"
+                    className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-300 flex items-center focus:outline-none focus:ring-1 focus:ring-[#B71C1C] rounded px-1"
                   >
                     Collaborate
                   </Link>
@@ -145,12 +149,12 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-8 text-[#B71C1C] tracking-wide uppercase">
+              <h3 className="text-xl font-bold mb-8 text-white tracking-wide uppercase">
                 Get in Touch
               </h3>
               <div className="space-y-6">
                 <div>
-                  <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">
+                  <p className="text-xs font-bold text-gray-300 uppercase tracking-widest mb-2">
                     Office Address
                   </p>
                   <p className="text-gray-300 leading-relaxed">
@@ -160,7 +164,7 @@ const Footer = () => {
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">
+                  <p className="text-xs font-bold text-gray-300 uppercase tracking-widest mb-2">
                     Email Inquiries
                   </p>
                   <a
@@ -171,11 +175,11 @@ const Footer = () => {
                   </a>
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">
+                  <p className="text-xs font-bold text-gray-300 uppercase tracking-widest mb-2">
                     Phone Numbers
                   </p>
                   <a
-                    href="tel:+918042185687"
+                    href="tel:+918867713031"
                     className="text-white hover:text-[#B71C1C] transition-colors"
                   >
                     +91 8867713031
@@ -194,42 +198,35 @@ const Footer = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-all transform hover:scale-110"
+                className="text-gray-300 hover:text-white transition-all transform hover:scale-110 focus:outline-none focus:ring-1 focus:ring-[#B71C1C] rounded p-1"
+                aria-label={`Follow us on ${social.name}`}
               >
                 <social.icon className="w-6 h-6" />
               </a>
             ))}
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 mb-8 text-xs text-gray-500 font-medium">
-            <Link to="/terms" className="hover:text-white transition-colors">
+          <div className="flex flex-wrap justify-center gap-6 mb-8 text-xs text-gray-300 font-medium">
+            <Link to="/terms" className="hover:text-white transition-colors focus:outline-none focus:ring-1 focus:ring-[#B71C1C] rounded px-1">
               Terms & Conditions
             </Link>
-            <Link to="/privacy" className="hover:text-white transition-colors">
+            <Link to="/privacy" className="hover:text-white transition-colors focus:outline-none focus:ring-1 focus:ring-[#B71C1C] rounded px-1">
               Privacy Policy
             </Link>
             <Link
               to="/disclaimer"
-              className="hover:text-white transition-colors"
+              className="hover:text-white transition-colors focus:outline-none focus:ring-1 focus:ring-[#B71C1C] rounded px-1"
             >
               Disclaimer
             </Link>
           </div>
 
-          <p className="text-sm text-gray-600 text-center">
+          <p className="text-sm text-gray-300 text-center">
             &copy; {new Date().getFullYear()} Humanity Calls Trust®. All Rights
             Reserved.
           </p>
-          <p className="text-xs font-bold text-gray-600 text-center mt-2">
-            Designed and Developed by{" "}
-            <a
-              href="https://cortexit.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-            >
-              @cortexit.in
-            </a>
+          <p className="text-xs font-bold text-gray-300 text-center mt-4">
+            Designed and Developed by CORTEX™ IT.
           </p>
         </div>
       </div>
