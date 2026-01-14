@@ -3,13 +3,23 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+// Create transporter using a function to ensure environment variables are loaded
+const getTransporter = () => {
+  const user = process.env.EMAIL_USER;
+  const pass = process.env.EMAIL_PASS ? process.env.EMAIL_PASS.replace(/\s/g, "") : "";
+
+  if (!user || !pass) {
+    console.error("Missing EMAIL_USER or EMAIL_PASS in environment variables");
+  }
+
+  return nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: user,
+      pass: pass,
+    },
+  });
+};
 
 export const sendEmail = async (req, res) => {
   const { type, data, subject } = req.body;
@@ -126,10 +136,15 @@ export const sendEmail = async (req, res) => {
   };
 
   try {
+    const transporter = getTransporter();
     await transporter.sendMail(mailOptions);
     res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
     console.error("Error sending email:", error);
-    res.status(500).json({ message: "Failed to send email" });
+    res.status(500).json({ 
+      message: "Failed to send email", 
+      error: error.message,
+      code: error.code
+    });
   }
 };
