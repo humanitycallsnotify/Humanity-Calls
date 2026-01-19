@@ -73,31 +73,31 @@ const Footer = () => {
               </h3>
               <div className="space-y-6">
                 <div>
-                  <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
                     {t("footer.office_address_title")}
                   </p>
-                  <p className="text-white/80 leading-relaxed whitespace-pre-line">
+                  <p className="text-white/90 leading-relaxed whitespace-pre-line">
                     {t("footer.office_address_value")}
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
                     {t("footer.email_inquiries")}
                   </p>
                   <a
                     href="mailto:humanitycallsnotify@gmail.com"
-                    className="text-white hover:text-gray-400 hover:underline transition-colors"
+                    className="text-white hover:text-gray-300 hover:underline transition-colors"
                   >
                     humanitycallsnotify@gmail.com
                   </a>
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
                     {t("footer.phone_numbers")}
                   </p>
                   <a
                     href="tel:+918867713031"
-                    className="text-white hover:text-gray-400 hover:underline transition-colors"
+                    className="text-white hover:text-gray-300 hover:underline transition-colors"
                   >
                     +91 8867713031
                   </a>

@@ -14,10 +14,10 @@ const Button = ({
   
   const variants = {
     primary: "bg-primary text-white hover:brightness-110",
-    secondary: "bg-secondary text-white hover:brightness-110",
+    secondary: "bg-secondary text-white hover:brightness-110 shadow-[0_0_0_1px_rgba(255,255,255,0.1)]",
     blood: "bg-blood text-white hover:bg-blood-dark",
     outline: "border-2 border-primary text-primary hover:bg-primary hover:text-white",
-    white: "bg-white text-primary hover:bg-gray-100"
+    white: "bg-white text-secondary hover:bg-gray-100 font-bold"
   };
 
   return (

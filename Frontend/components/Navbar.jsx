@@ -143,7 +143,7 @@ const Navbar = () => {
               src={hclogo}
               width="50"
               height="50"
-              style={{ minWidth: 50, minHeight: 50 }}
+              style={{ width: 50, height: 50, objectFit: 'contain' }}
               alt="Humanity Calls logo"
             />
             <span className="text-xl font-bold text-blood tracking-tight">

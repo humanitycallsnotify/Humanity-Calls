@@ -20,78 +20,79 @@ const Home = () => {
   const { t, i18n } = useTranslation();
   const containerRef = useRef(null);
   const [visibleCount, setVisibleCount] = useState(6);
+  const prevVisibleCount = useRef(0);
 
   const programs = [
     {
       id: "community_cleanup",
       image:
-        "https://res.cloudinary.com/daokrum7i/image/upload/v1768843644/hc_community_nrwk4i.jpg",
+        "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600,c_limit/v1768843644/hc_community_nrwk4i.jpg",
       alt: "Community clean up program",
     },
     {
       id: "csr_activities",
       image:
-        "https://res.cloudinary.com/daokrum7i/image/upload/v1768843644/hc_csr_hdqwno.jpg",
+        "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600,c_limit/v1768843644/hc_csr_hdqwno.jpg",
       alt: "CSR activities with corporates",
     },
     {
       id: "road_safety",
       image:
-        "https://res.cloudinary.com/daokrum7i/image/upload/v1768843645/hc_road_igjyih.jpg",
+        "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600,c_limit/v1768843645/hc_road_igjyih.jpg",
       alt: "Road safety awareness campaign",
     },
     {
       id: "street_paintings",
       image:
-        "https://res.cloudinary.com/daokrum7i/image/upload/v1768843644/hc_street_o1a0yq.jpg",
+        "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600,c_limit/v1768843644/hc_street_o1a0yq.jpg",
       alt: "Street and wall painting initiative",
     },
     {
       id: "health_hygiene",
       image:
-        "https://res.cloudinary.com/daokrum7i/image/upload/v1768843644/hc_health_yszrec.jpg",
+        "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600,c_limit/v1768843644/hc_health_yszrec.jpg",
       alt: "Health and hygiene awareness session",
     },
     {
       id: "youth_empowerment",
       image:
-        "https://res.cloudinary.com/daokrum7i/image/upload/v1768843644/hc_youth_bjqle8.jpg",
+        "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600,c_limit/v1768843644/hc_youth_bjqle8.jpg",
       alt: "Youth empowerment workshop",
     },
     {
       id: "community_conservation",
       image:
-        "https://res.cloudinary.com/daokrum7i/image/upload/v1767814231/hc_community_conservation_leov19.jpg",
+        "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600,c_limit/v1767814231/hc_community_conservation_leov19.jpg",
       alt: "Community conservation project by Humanity Calls",
     },
     {
       id: "early_education",
       image:
-        "https://res.cloudinary.com/daokrum7i/image/upload/v1767814231/hc_early_education_u8j2cv.jpg",
+        "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600,c_limit/v1767814231/hc_early_education_u8j2cv.jpg",
       alt: "Early education support for children",
     },
     {
       id: "forest_restoration",
       image:
-        "https://res.cloudinary.com/daokrum7i/image/upload/v1767814231/hc_forest_restoration_jjjomq.jpg",
+        "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600,c_limit/v1767814231/hc_forest_restoration_jjjomq.jpg",
       alt: "Forest restoration initiative",
     },
     {
       id: "stop_wildlife_crime",
       image:
-        "https://res.cloudinary.com/daokrum7i/image/upload/v1767814232/hc_stop_wildlife_crime_rxiaqf.jpg",
+        "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600,c_limit/v1767814232/hc_stop_wildlife_crime_rxiaqf.jpg",
       alt: "Stopping wildlife crime initiative",
     },
     {
       id: "marine_conservation",
       image:
-        "https://res.cloudinary.com/daokrum7i/image/upload/v1767814233/hc_marine_conservation_ptw4yg.webp",
+        "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600,c_limit/v1767814233/hc_marine_conservation_ptw4yg.webp",
       alt: "Marine conservation project",
     },
     {
       id: "environmental_policy",
       image:
-        "https://res.cloudinary.com/daokrum7i/image/upload/v1767814231/hc_environmental_policy_gjhqyx.png",
+        "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_600,c_limit/v1767814231/hc_environmental_policy_gjhqyx.png",
       alt: "Environmental policy advocacy",
     },
   ];
@@ -102,25 +103,45 @@ const Home = () => {
 
   useEffect(() => {
     const cards = document.querySelectorAll('[data-animation="program-card"]');
-    if (cards.length > 0) {
-      gsap.fromTo(
-        cards,
-        { opacity: 0, y: 30, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.5,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: cards[0],
-            start: "top 85%",
-            once: true,
+    const newCards = Array.from(cards).slice(prevVisibleCount.current);
+
+    if (newCards.length > 0) {
+      if (prevVisibleCount.current === 0) {
+        // First batch, use ScrollTrigger
+        gsap.fromTo(
+          newCards,
+          { opacity: 0, y: 30, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: newCards[0],
+              start: "top 85%",
+              once: true,
+            },
           },
-        },
-      );
+        );
+      } else {
+        // Subsequent batches, animate immediately
+        gsap.fromTo(
+          newCards,
+          { opacity: 0, y: 30, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: "power2.out",
+          },
+        );
+      }
     }
+    prevVisibleCount.current = visibleCount;
   }, [visibleCount]);
 
   useLayoutEffect(() => {
@@ -552,7 +573,7 @@ const Home = () => {
                 src="https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_800/v1767814232/hc_blood_donation_mfwveo.png"
                 alt={IMAGE_ALTS.bloodDonation}
                 data-animation="blood-image"
-                className="rounded-2xl border border-white/20"
+                className="rounded-2xl border border-white/20 w-full object-cover aspect-[3/2]"
                 width="800"
                 height="533"
                 loading="lazy"
@@ -603,10 +624,10 @@ const Home = () => {
             <div className="relative lg:order-2 px-4 md:px-0">
               <div className="absolute inset-0 bg-secondary/10 blur-3xl rounded-full -z-10"></div>
               <img
-                src="https://res.cloudinary.com/daokrum7i/image/upload/v1767814233/humanity_calls_poor_needy_oef47s.avif"
+                src="https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_800,c_limit/v1767814233/humanity_calls_poor_needy_oef47s.avif"
                 alt={IMAGE_ALTS.poorNeedy}
                 data-animation="poor-needy-image"
-                className="rounded-2xl border border-white/10 w-full max-h-[400px] md:max-h-none object-contain shadow-2xl"
+                className="rounded-2xl border border-white/10 w-full object-cover aspect-[3/2] shadow-2xl"
                 width="800"
                 height="533"
                 loading="lazy"
@@ -642,10 +663,10 @@ const Home = () => {
             <div className="relative px-4 md:px-0">
               <div className="absolute inset-0 bg-primary/10 blur-3xl rounded-full -z-10"></div>
               <img
-                src="https://res.cloudinary.com/daokrum7i/image/upload/v1767814232/humanity_calls_animal_resque_dxz9jb.avif"
+                src="https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_800,c_limit/v1767814232/humanity_calls_animal_resque_dxz9jb.avif"
                 alt={IMAGE_ALTS.animalRescue}
                 data-animation="animal-rescue-image"
-                className="rounded-2xl border border-white/10 w-full max-h-[400px] md:max-h-none object-contain shadow-2xl"
+                className="rounded-2xl border border-white/10 w-full object-cover aspect-[3/2] shadow-2xl"
                 width="800"
                 height="533"
                 loading="lazy"

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 const HERO_IMAGES = [
-  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto/v1768556077/landing_page3_dlrxfk.jpg",
-  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto/v1768555729/landing_page4_yjkb6r.png",
-  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto/v1768555360/landing_page2_inavn7.webp",
-  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto/v1768555429/landing_page5_ebletc.jpg",
-  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto/v1768555357/landing_page8_zcjgcn.jpg",
-  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto/v1768555358/landing_page7_yzqyda.jpg",
-  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto/v1768555359/landing_page6_lvaoju.jpg",
-  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto/v1768555359/landing_page1_jdiydd.jpg",
+  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_1200,c_limit/v1768556077/landing_page3_dlrxfk.jpg",
+  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_1200,c_limit/v1768555729/landing_page4_yjkb6r.png",
+  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_1200,c_limit/v1768555360/landing_page2_inavn7.webp",
+  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_1200,c_limit/v1768555429/landing_page5_ebletc.jpg",
+  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_1200,c_limit/v1768555357/landing_page8_zcjgcn.jpg",
+  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_1200,c_limit/v1768555358/landing_page7_yzqyda.jpg",
+  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_1200,c_limit/v1768555359/landing_page6_lvaoju.jpg",
+  "https://res.cloudinary.com/daokrum7i/image/upload/f_auto,q_auto,w_1200,c_limit/v1768555359/landing_page1_jdiydd.jpg",
 ];
 
 const HeroCarousel = () => {
@@ -35,6 +35,9 @@ const HeroCarousel = () => {
             alt={`Slide ${index + 1}`}
             className="w-full h-full object-cover"
             loading={index === 0 ? "eager" : "lazy"}
+            {...(index === 0 ? { fetchPriority: "high" } : {})}
+            width="1200"
+            height="800"
           />
         </div>
       ))}
