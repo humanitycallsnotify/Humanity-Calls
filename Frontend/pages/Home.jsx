@@ -577,6 +577,7 @@ const Home = () => {
                 width="800"
                 height="533"
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="space-y-6">
@@ -631,6 +632,7 @@ const Home = () => {
                 width="800"
                 height="533"
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="space-y-6 lg:order-1">
@@ -670,6 +672,7 @@ const Home = () => {
                 width="800"
                 height="533"
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="space-y-6">
@@ -715,6 +718,11 @@ const Home = () => {
                   src={p.image}
                   alt={p.alt}
                   className="w-full h-48 object-cover opacity-80"
+                  loading="lazy"
+                  decoding="async"
+                  width="400"
+                  height="192"
+                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 300px"
                 />
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-3 text-white">
@@ -833,6 +841,7 @@ const Home = () => {
                 width="800"
                 height="533"
                 loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
