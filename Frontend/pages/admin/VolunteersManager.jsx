@@ -185,7 +185,31 @@ const VolunteersManager = () => {
   });
 
   const handleExportExcel = () => {
-    const data = filteredVolunteers.map(v => ({ ID: v.volunteerId, Name: v.fullName, Email: v.email, Status: v.status }));
+    const data = filteredVolunteers.map(v => ({
+      "Volunteer ID": v.volunteerId || "N/A",
+      "Full Name": v.fullName || "N/A",
+      "Email": v.email || "N/A",
+      "Phone": v.phone || "N/A",
+      "Date of Birth": v.dob ? new Date(v.dob).toLocaleDateString("en-GB") : "N/A",
+      "Age": v.dob ? calculateAge(v.dob) : "N/A",
+      "Gender": v.gender || "N/A",
+      "Blood Group": v.bloodGroup || "N/A",
+      "Joining Date": v.joiningDate ? new Date(v.joiningDate).toLocaleDateString("en-GB") : "N/A",
+      "Location Address": v.locationAddress || "N/A",
+      "Emergency Contact": v.emergencyContact || "N/A",
+      "Occupation": v.occupation === "Other" ? (v.occupationDetail || "Other") : (v.occupation || "N/A"),
+      "Skills": v.skills || "N/A",
+      "Area of Interest": v.interest || "N/A",
+      "Time Commitment": v.timeCommitment || "N/A",
+      "Working Mode": v.workingMode || "N/A",
+      "Role Preference": v.rolePreference || "N/A",
+      "Donation Support": Array.isArray(v.deviceDonationChoices) ? v.deviceDonationChoices.join(", ") : (v.deviceDonationChoices || "None"),
+      "Government ID Type": v.govIdType || "N/A",
+      "Has Driving License": v.hasDrivingLicense ? "Yes" : "No",
+      "Referred By": v.referrer ? `${v.referrer.fullName} (${v.referrer.volunteerId || "N/A"})` : (v.referredBy || "None"),
+      "Status": v.status || "N/A"
+    }));
+
     const ws = XLSX.utils.json_to_sheet(data);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Volunteers");
@@ -194,10 +218,66 @@ const VolunteersManager = () => {
   };
 
   const handleExportPDF = () => {
-    const doc = new jsPDF();
-    doc.text(`Volunteers Report - ${volunteerStatusTab}`, 14, 15);
-    const rows = filteredVolunteers.map(v => [v.volunteerId, v.fullName, v.email, v.status]);
-    autoTable(doc, { head: [["ID", "Name", "Email", "Status"]], body: rows, startY: 20 });
+    const doc = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
+    
+    // Add professional brand header
+    doc.setFontSize(16);
+    doc.setTextColor(79, 70, 229); // #4F46E5 Indigo
+    doc.text(`Volunteers Report - ${volunteerStatusTab.toUpperCase()}`, 14, 15);
+    
+    doc.setFontSize(9);
+    doc.setTextColor(100, 116, 139); // Slate 500
+    doc.text(`Generated on: ${new Date().toLocaleDateString("en-GB")} | Total Records: ${filteredVolunteers.length}`, 14, 20);
+
+    const headers = [
+      "ID", "Name", "Email", "Phone", "DOB", "Age", "Gender", "Blood", "Joined", 
+      "Emergency", "Occupation", "Skills", "Interest", "Commitment", "Mode", 
+      "Role", "Donations", "Gov ID", "DL", "Referred By", "Address", "Status"
+    ];
+
+    const rows = filteredVolunteers.map(v => [
+      v.volunteerId || "N/A",
+      v.fullName || "N/A",
+      v.email || "N/A",
+      v.phone || "N/A",
+      v.dob ? new Date(v.dob).toLocaleDateString("en-GB") : "N/A",
+      v.dob ? calculateAge(v.dob).toString() : "N/A",
+      v.gender || "N/A",
+      v.bloodGroup || "N/A",
+      v.joiningDate ? new Date(v.joiningDate).toLocaleDateString("en-GB") : "N/A",
+      v.emergencyContact || "N/A",
+      v.occupation === "Other" ? (v.occupationDetail || "Other") : (v.occupation || "N/A"),
+      v.skills || "N/A",
+      v.interest || "N/A",
+      v.timeCommitment || "N/A",
+      v.workingMode || "N/A",
+      v.rolePreference || "N/A",
+      Array.isArray(v.deviceDonationChoices) ? v.deviceDonationChoices.join(", ") : (v.deviceDonationChoices || "None"),
+      v.govIdType || "N/A",
+      v.hasDrivingLicense ? "Yes" : "No",
+      v.referrer ? `${v.referrer.fullName} (${v.referrer.volunteerId || "N/A"})` : (v.referredBy || "None"),
+      v.locationAddress || "N/A",
+      v.status || "N/A"
+    ]);
+
+    autoTable(doc, {
+      head: [headers],
+      body: rows,
+      startY: 24,
+      styles: {
+        fontSize: 5,
+        cellPadding: 1,
+        overflow: "linebreak"
+      },
+      headStyles: {
+        fillColor: [79, 70, 229], // #4F46E5 Indigo Primary
+        textColor: [255, 255, 255],
+        fontStyle: "bold"
+      },
+      theme: "grid",
+      margin: { top: 25, left: 8, right: 8 }
+    });
+
     doc.save(`Volunteers_${volunteerStatusTab}_${new Date().toLocaleDateString()}.pdf`);
     setShowExportModal(false);
   };
