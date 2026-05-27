@@ -55,6 +55,7 @@ const FeedbackManager = lazy(() => import("./pages/admin/FeedbackManager"));
 const EmergencyFundraisersManager = lazy(() => import("./pages/admin/EmergencyFundraisersManager"));
 const EmergencyDonorsManager = lazy(() => import("./pages/admin/EmergencyDonorsManager"));
 const AnalyticsDashboard = lazy(() => import("./pages/admin/AnalyticsDashboard"));
+const FamilyTreeRolesManager = lazy(() => import("./pages/admin/FamilyTreeRolesManager"));
 const Verify = lazy(() => import("./pages/Verify"));
 const MemberPublicCard = lazy(() => import("./pages/MemberPublicCard"));
 const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
@@ -156,6 +157,7 @@ const AppContent = () => {
               <Route path="feedback" element={<FeedbackManager />} />
               <Route path="emergency-fundraisers" element={<EmergencyFundraisersManager />} />
               <Route path="emergency-donors" element={<EmergencyDonorsManager />} />
+              <Route path="team-hierarchy" element={<FamilyTreeRolesManager />} />
             </Route>
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
